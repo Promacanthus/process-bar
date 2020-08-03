@@ -14,8 +14,8 @@ type Bar struct {
 }
 
 func main() {
-	fmt.Println(`Product experience auxiliary tools
-Copyright (C) 2020  PEAT 1.0.0    July 31 2020
+	fmt.Println(`Command line progress bar example 
+Copyright (C) 2020  CLPB 1.0.0    July 31 2020
 	`)
 	var bar Bar
 	bar.NewOption(0, 11)
@@ -26,6 +26,7 @@ Copyright (C) 2020  PEAT 1.0.0    July 31 2020
 	bar.Finish()
 }
 
+// NewOption create a new process bar with start position and all step
 func (bar *Bar) NewOption(start, total int64) {
 	bar.cur = start
 	bar.total = total
@@ -42,11 +43,13 @@ func (bar *Bar) getPercent() int64 {
 	return int64(float32(bar.cur) / float32(bar.total) * 100)
 }
 
+// NewOptionWithGraph create a new process bar with customized progress display pattern
 func (bar *Bar) NewOptionWithGraph(start, total int64, graph string) {
 	bar.graph = graph
 	bar.NewOption(start, total)
 }
 
+// Play start to run the process bar
 func (bar *Bar) Play(cur int64) {
 	bar.cur = cur
 	last := bar.percent
@@ -57,6 +60,7 @@ func (bar *Bar) Play(cur int64) {
 	fmt.Printf("\r[%-10s]  %3d%%  %8d/%d", bar.rate, bar.percent, bar.cur, bar.total)
 }
 
+// Finish indicates that the progress bar finished and Output carriage return
 func (bar *Bar) Finish() {
 	fmt.Println()
 }
