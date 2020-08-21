@@ -9,3 +9,7 @@ Show progress bar on the command line
 ## complete
 
 ![image](100.png)
+
+## Loading
+
+![image](loading.png)
